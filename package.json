@@ -1,0 +1,12 @@
+{
+  "name": "solution",
+  "version": "1.0.0",
+  "description": "An interview based coding challenge.",
+  "main": "index.js",
+  "author": "Andrew Eskenazi",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
