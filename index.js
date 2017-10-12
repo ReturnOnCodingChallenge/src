@@ -40,11 +40,11 @@ Byte Sized Notes:
   - identify the words that will be inflated
   - represent the phonetic +1 representation for each word definition
   - have a const to store the passed in string for possible comparisons
-  - add an accumulator variable an empty array
+  - add an accumulator variable as an empty array
   - split the string at whitespace to cast string to an array type
   - init the accumulator pattern loop
   - use a temp variable or have a way to keep track of Caps/lower case
-  - translate the word only up to the index AKA Threeday should not be converted to Threeday
+  - translate the word only up to the index AKA Today should not be converted to Three.. but keep the day in the translation
   - add conditionals to only translate words that match in the list
   - push all words to the accumulator
   - join the result array back into a string with whitespace
@@ -55,3 +55,45 @@ Byte Sized Notes:
   - Have Fun!
 
 */
+
+// Solution:
+// terms:  “To : Three won : two for : five"
+
+const termDefinitions = {
+  "To": "Three",
+  "won": "two",
+  "for": "five",
+  "ten": 'eleven'
+}
+
+const baseCase = 'Today I won an award for being awesome.';
+
+const testCase1 = 'Good fortune is a virtue.'; // fortune : five
+const testCase2 = 'I completed this with tenure.'; // tenure : eleven
+
+console.log(inflateString(baseCase, termDefinitions),
+            inflateString(testCase1, termDefinitions),
+            inflateString(testCase2, termDefinitions));
+
+
+function inflateString(string = null, dictionary = null) { // default perams if nothing is passed in
+
+  if ((string === null) || (dictionary === null)) {
+    return false;
+  }
+
+  const strInput = string;
+  const inputArray = string.split(' ');
+
+  let result = inputArray.map((word) => {
+    let tempTranslation = word;
+    for (let prop in dictionary) {
+      if(word.includes(prop)) {
+        tempTranslation = word.replace(prop, dictionary[prop]);
+      }
+    }
+    return tempTranslation;
+  });
+
+  return result.join(' ').trim();
+}
