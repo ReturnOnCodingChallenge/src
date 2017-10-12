@@ -1,5 +1,5 @@
 {
-  "name": "solution",
+  "name": "src",
   "version": "1.0.0",
   "description": "An interview based coding challenge.",
   "main": "index.js",
