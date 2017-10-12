@@ -97,7 +97,3 @@ function inflateString(string = null, dictionary = null) { // default perams if 
 
   return result.join(' ').trim();
 }
-
-// exporting for testing file
-
-module.exports = { inflateString };
