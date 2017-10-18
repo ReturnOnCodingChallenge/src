@@ -1,22 +1,21 @@
 module.exports = {
-  inflateString: (string = null, dictionary = null) => {
-    if ((string === null) || (dictionary === null)) {
-      return false;
-    }
 
-    const strInput = string;
-    const inputArray = string.split(' ');
+  inflateString: (string, definitions) => {
+    return string.split(' ').map((word) => {
+      let Caps = (word.toLowerCase() === word)
+      ? false
+      : true;
 
-    let result = inputArray.map((word) => {
-      let tempTranslation = word;
-      for (let prop in dictionary) {
-        if(word.includes(prop)) {
-          tempTranslation = word.replace(prop, dictionary[prop]);
-        }
+      word = word.toLowerCase();
+
+      for (let term in definitions) {
+        (word.includes(term))
+        ? word = word.replace(term, definitions[term])
+        : word;
       }
-      return tempTranslation;
-    });
 
-    return result.join(' ').trim();
+      return (Caps)? `${word.charAt(0).toUpperCase()}${word.slice(1)}` : word;
+    }).join(' ');
   }
+
 }

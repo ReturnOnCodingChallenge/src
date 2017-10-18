@@ -59,8 +59,8 @@ Byte Sized Notes:
 // Solution:
 // terms:  “To : Three won : two for : five"
 
-const termDefinitions = {
-  "To": "Three",
+const termDefinitions = { // all lower case
+  "to": "three",
   "won": "two",
   "for": "five",
   "ten": 'eleven'
@@ -76,24 +76,64 @@ console.log(inflateString(baseCase, termDefinitions),
             inflateString(testCase2, termDefinitions));
 
 
-function inflateString(string = null, dictionary = null) { // default perams if nothing is passed in
+// function inflateString(string = null, dictionary = null) { // default perams if nothing is passed in
+//
+//   if ((string === null) || (dictionary === null)) {
+//     return false;
+//   }
+//
+//   // const strInput = string; // not neccesarry
+//   const inputArray = string.split(' ');
+//
+//   let result = inputArray.map((word) => {
+//     let tempTranslation = word;
+//     for (let prop in dictionary) {
+//       if(word.includes(prop)) {
+//         tempTranslation = word.replace(prop, dictionary[prop]);
+//       }
+//     }
+//     return tempTranslation;
+//   });
+//
+//   return result.join(' '); // trim() was not neccesarry
+// }
 
-  if ((string === null) || (dictionary === null)) {
-    return false;
-  }
+/// Refactor:
 
-  const strInput = string;
-  const inputArray = string.split(' ');
+// function inflateString(string, definitions) {
+//
+//   return string.split(' ').map((word) => {
+//     let Caps = word.toLowerCase() === word ? false : true
+// ;
+//     ('Today'.toLowerCase() === 'today') ? Caps : Caps = true;
+//     console.log(Caps);
+//
+//     for (let term in definitions) {
+//       (word.includes(term))? word = word.replace(term, definitions[term]) : word;
+//     }
+//     return word;
+//   }).join(' ');
+// }
 
-  let result = inputArray.map((word) => {
-    let tempTranslation = word;
-    for (let prop in dictionary) {
-      if(word.includes(prop)) {
-        tempTranslation = word.replace(prop, dictionary[prop]);
-      }
+// Refactor:
+
+function inflateString(string = null, definitions = null) {
+
+  return string.split(' ').map((word) => {
+    let Caps = (word.toLowerCase() === word)
+    ? false
+    : true;
+
+    word = word.toLowerCase();
+
+    for (let term in definitions) {
+      (word.includes(term))
+      ? word = word.replace(term, definitions[term])
+      : word;
     }
-    return tempTranslation;
-  });
 
-  return result.join(' ').trim();
+    return (Caps)
+    ? `${word.charAt(0).toUpperCase()}${word.slice(1)}`
+    : word;
+  }).join(' ');
 }
