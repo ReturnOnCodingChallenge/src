@@ -14,7 +14,7 @@ module.exports = {
         : word;
       }
 
-      return (Caps)? `${word.charAt(0).toUpperCase()}${word.slice(1)}` : word;
+      return (Caps)? `${word[0].toUpperCase()}${word.slice(1)}` : word;
     }).join(' ');
   }
 

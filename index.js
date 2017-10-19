@@ -1,5 +1,5 @@
 /*
-____    _____   ______                     __
+ ____    _____   ______                     __
 /\  _`\ /\  __`\/\__  _\                   /\ \
 \ \ \ \ \ \ \/\ \/_/\ \/     ___    ___    \_\ \     __
 \ \ ,  /\ \ \ \ \ \ \ \    /'___\ / __`\  /'_` \  /'__`\
@@ -133,7 +133,7 @@ function inflateString(string = null, definitions = null) {
     }
 
     return (Caps)
-    ? `${word.charAt(0).toUpperCase()}${word.slice(1)}`
+    ? `${word[0].toUpperCase()}${word.slice(1)}`
     : word;
   }).join(' ');
 }
